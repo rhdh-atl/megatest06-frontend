@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: megatest06-poi-map-app-dev
+  annotations:
+    argocd/app-name: megatest06-poi-map-app-dev
+    backstage.io/kubernetes-id: megatest06-poi-map-app
+    backstage.io/kubernetes-namespace: megatest06
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rhdh-atl/megatest06-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.j0i9yf30.eastus2.aroapp.io/dev-pipelines/ns/megatest06/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.j0i9yf30.eastus2.aroapp.io/k8s/ns/megatest06/deployments/megatest06-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.j0i9yf30.eastus2.aroapp.io/#https://github.com/rhdh-atl/megatest06-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://megatest06-poi-map-app-megatest06.apps.j0i9yf30.eastus2.aroapp.io
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/megatest06"
+  system: workshop-system-megatest06
+  consumesApis:
+    - gateway-api-megatest06
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-megatest06
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/megatest06"
